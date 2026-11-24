@@ -1,0 +1,504 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://D:\Documentos\Doc Altium\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">22/11/2026</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10:12:11 a. m.</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc" class="file"><acronym title="C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc">C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">44</td></tr>
+</table>
+</td>
+</table><a name="IDY54MTKST1G5AEKM5Q4ONMOL0VEGJ1JYSN1YYVPGICDMXM5CDJ2ND"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZRMGVFFGUE0XIE2JBGLBJYPCZOXV1DUM4YDKMWDCRZUBFG2JITQL">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGZ2LSONQ1VWLOMOKSNUZDMRUQMAENXNJEZXFH4BWFMCQ3DXLSS4I">Short-Circuit Constraint (Allowed=Yes) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFJW2GU30PRWLDJOLABZYHFF43NDSXOGQ5LMA0QMWCPCLRFRYT0LE">Short-Circuit Constraint (Allowed=Yes) (InNet('MAG_X_PLUS')),(InNet('MAG_X_MINUS'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1CRCV0HR3EC0PZR4NGTEZV5CFOI10MWNVRK4HONKRV3JRRDVOYVK">Short-Circuit Constraint (Allowed=Yes) (InNet('MAG_Y_PLUS')),(InNet('MAG_Y_MINUS'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGVBV5O3ESV10OLD22IXZ0A2XJOZXUKRIPYT2IFF100VKAJU2XZXO">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">28</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZN5SNBE2JAQDPAM3NOU01DX0ND3OEIOI04OXLXBK2HEKR4MWETUL">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0CXXJWL1OZ0ADELMIIWM50QFZNZOISXVDS41RKDINZKBP3WRV0UJ">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXJJQH3KU30M2OWHIYDZJYCRPZIIODXTZGIFPLFF4TGHWXYJLT2YM">Width Constraint (Min=0.05mm) (Max=1.5mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXCZ03WJU3MYMLNHOHL1RKJUCHM4E1RLDWSQSXTH3FLPOGGUXF5B">Width Constraint (Min=0.254mm) (Max=0.95mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYRJPRTJR2P5RIQVBVKPSH2RPCMCRR2B2NT4XTC2CHZGFQGPGWQO">Width Constraint (Min=0.254mm) (Max=1.5mm) (Preferred=1.5mm) (InNetClass('POWER'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJFWOFK3EVV2TGAOUODOUGACSEGLWZ1H034P4GJFNFUX4IRH2PAWP">Width Constraint (Min=0.153mm) (Max=0.254mm) (Preferred=0.236mm) (InNetClass('SIGNAL'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWQ14YZ33WDVWM2R1ZXLN535TNI2UMJXGZIFKCNHKRROJTQRWHXBM">Width Constraint (Min=0.254mm) (Max=1mm) (Preferred=0.95mm) (InNetClass('MAG'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSYFKFRWI3FHTEBXMRTCYL12I3JSAMZAT0LGUNVDGC1XTJICC4HKH">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJZWYZFFKERITLBRVW2NHS00RTEJMX0VMT5TSM5CL5ONXYWZL11GG">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGXUXO35K42QOEG1QI0X2VSTU5GFNKSRREINU1CHDYDFZCQI2NTZF">Hole Size Constraint (Min=0.025mm) (Max=3.2mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDAZY5WZJNIWCCHRSOTPVPUGMAEE3K4N0XTNMHEYP2PVLYJUYEBU5C">Hole To Hole Clearance (Gap=0.188mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWJYIKWIKVH4BEXKXNJXDK0Q2VD3ANITMGRIK2WUETSDSF5WTKEK">Minimum Solder Mask Sliver (Gap=0.15mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3BFCDBCW310SPTPJGT2O3TSZLHONJ11132E45FMSAIS1H5P5WRWN">Silk To Solder Mask (Clearance=0.125mm) (Disabled)(IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIYLDNOIXBUQ2EDDG3BINUYDLQBI10Y2YYKHKY0BKL33NTK1RNNBE">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDR0S1B2UB31ZSCMMVZR3B4W3QFIRO1F1JBS01GOOGHL4WQSSLIQ5G">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGIPDIJKXYOB5GEOVH0R0XYZYSG1EB2UWA0SJ3FPG5E22LXNGFFLL">Length Constraint (Min=0mm) (Max=30.4mm) (InNetClass('SIGNAL'))</a></td>
+<td class="column2">14</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJESCRTHGG1PNGH3XTVH0S14HHHFHVISQNCUA4SOQYWQ5ZRKAN35N">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">44</td>
+</tr>
+</table><br><a name="IDGVBV5O3ESV10OLD22IXZ0A2XJOZXUKRIPYT2IFF100VKAJU2XZXO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2680.301mil|Location2.X=2962.205mil|Location1.Y=470.866mil|Location2.Y=603.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2680.301mil|Location2.X=2962.205mil|Location1.Y=470.866mil|Location2.Y=603.937mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Track (70.62mm,12.645mm)(70.62mm,14.5mm) on Top Layer And Pad RJ1-1(72.7mm,12.8mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2858.205mil|Location2.X=2965.945mil|Location1.Y=501.937mil|Location2.Y=719.882mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2858.205mil|Location2.X=2965.945mil|Location1.Y=501.937mil|Location2.Y=719.882mil|Absolute=True">Un-Routed Net Constraint: Net GND_A Between Pad RJ1-2(72.7mm,12.851mm) on Top Layer And Via (74.7mm,17.65mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=591.535mil|Location2.X=1219.488mil|Location1.Y=808.071mil|Location2.Y=845.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=591.535mil|Location2.X=1219.488mil|Location1.Y=808.071mil|Location2.Y=845.472mil|Absolute=True">Un-Routed Net Constraint: Track (15.5mm,21mm)(30.5mm,21mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=630.905mil|Location2.X=1180.118mil|Location1.Y=768.701mil|Location2.Y=806.102mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=630.905mil|Location2.X=1180.118mil|Location1.Y=768.701mil|Location2.Y=806.102mil|Absolute=True">Un-Routed Net Constraint: Track (16.5mm,20mm)(29.5mm,20mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=630.905mil|Location2.X=668.307mil|Location1.Y=217.52mil|Location2.Y=806.102mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=630.905mil|Location2.X=668.307mil|Location1.Y=217.52mil|Location2.Y=806.102mil|Absolute=True">Un-Routed Net Constraint: Track (16.5mm,6mm)(16.5mm,20mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=630.905mil|Location2.X=1219.488mil|Location1.Y=217.52mil|Location2.Y=254.921mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=630.905mil|Location2.X=1219.488mil|Location1.Y=217.52mil|Location2.Y=254.921mil|Absolute=True">Un-Routed Net Constraint: Track (16.5mm,6mm)(30.5mm,6mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=670.275mil|Location2.X=1140.748mil|Location1.Y=729.331mil|Location2.Y=766.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=670.275mil|Location2.X=1140.748mil|Location1.Y=729.331mil|Location2.Y=766.732mil|Absolute=True">Un-Routed Net Constraint: Track (17.5mm,19mm)(28.5mm,19mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=670.275mil|Location2.X=707.677mil|Location1.Y=256.89mil|Location2.Y=766.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=670.275mil|Location2.X=707.677mil|Location1.Y=256.89mil|Location2.Y=766.732mil|Absolute=True">Un-Routed Net Constraint: Track (17.5mm,7mm)(17.5mm,19mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=670.275mil|Location2.X=1180.118mil|Location1.Y=256.89mil|Location2.Y=294.291mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=670.275mil|Location2.X=1180.118mil|Location1.Y=256.89mil|Location2.Y=294.291mil|Absolute=True">Un-Routed Net Constraint: Track (17.5mm,7mm)(29.5mm,7mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=709.646mil|Location2.X=1101.378mil|Location1.Y=689.961mil|Location2.Y=727.362mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=709.646mil|Location2.X=1101.378mil|Location1.Y=689.961mil|Location2.Y=727.362mil|Absolute=True">Un-Routed Net Constraint: Track (18.5mm,18mm)(27.5mm,18mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=709.646mil|Location2.X=747.047mil|Location1.Y=296.26mil|Location2.Y=727.362mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=709.646mil|Location2.X=747.047mil|Location1.Y=296.26mil|Location2.Y=727.362mil|Absolute=True">Un-Routed Net Constraint: Track (18.5mm,8mm)(18.5mm,18mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=709.646mil|Location2.X=1140.748mil|Location1.Y=296.26mil|Location2.Y=333.661mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=709.646mil|Location2.X=1140.748mil|Location1.Y=296.26mil|Location2.Y=333.661mil|Absolute=True">Un-Routed Net Constraint: Track (18.5mm,8mm)(28.5mm,8mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=749.016mil|Location2.X=1062.008mil|Location1.Y=650.591mil|Location2.Y=687.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=749.016mil|Location2.X=1062.008mil|Location1.Y=650.591mil|Location2.Y=687.992mil|Absolute=True">Un-Routed Net Constraint: Track (19.5mm,17mm)(26.5mm,17mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=749.016mil|Location2.X=786.417mil|Location1.Y=335.63mil|Location2.Y=687.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=749.016mil|Location2.X=786.417mil|Location1.Y=335.63mil|Location2.Y=687.992mil|Absolute=True">Un-Routed Net Constraint: Track (19.5mm,9mm)(19.5mm,17mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=749.016mil|Location2.X=1101.378mil|Location1.Y=335.63mil|Location2.Y=373.031mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=749.016mil|Location2.X=1101.378mil|Location1.Y=335.63mil|Location2.Y=373.031mil|Absolute=True">Un-Routed Net Constraint: Track (19.5mm,9mm)(27.5mm,9mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=788.386mil|Location2.X=825.787mil|Location1.Y=375mil|Location2.Y=648.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=788.386mil|Location2.X=825.787mil|Location1.Y=375mil|Location2.Y=648.622mil|Absolute=True">Un-Routed Net Constraint: Track (20.5mm,10mm)(20.5mm,16mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=788.386mil|Location2.X=1062.008mil|Location1.Y=375mil|Location2.Y=412.402mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=788.386mil|Location2.X=1062.008mil|Location1.Y=375mil|Location2.Y=412.402mil|Absolute=True">Un-Routed Net Constraint: Track (20.5mm,10mm)(26.5mm,10mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=788.386mil|Location2.X=1022.638mil|Location1.Y=611.221mil|Location2.Y=648.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=788.386mil|Location2.X=1022.638mil|Location1.Y=611.221mil|Location2.Y=648.622mil|Absolute=True">Un-Routed Net Constraint: Track (20.5mm,16mm)(25.5mm,16mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=827.756mil|Location2.X=865.157mil|Location1.Y=414.37mil|Location2.Y=569.882mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=827.756mil|Location2.X=865.157mil|Location1.Y=414.37mil|Location2.Y=569.882mil|Absolute=True">Un-Routed Net Constraint: Track (21.5mm,11mm)(21.5mm,14mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=827.756mil|Location2.X=1022.638mil|Location1.Y=414.37mil|Location2.Y=451.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=827.756mil|Location2.X=1022.638mil|Location1.Y=414.37mil|Location2.Y=451.772mil|Absolute=True">Un-Routed Net Constraint: Track (21.5mm,11mm)(25.5mm,11mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=827.756mil|Location2.X=943.898mil|Location1.Y=532.48mil|Location2.Y=569.882mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=827.756mil|Location2.X=943.898mil|Location1.Y=532.48mil|Location2.Y=569.882mil|Absolute=True">Un-Routed Net Constraint: Track (21.5mm,14mm)(23.5mm,14mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=886.811mil|Location2.X=943.898mil|Location1.Y=532.48mil|Location2.Y=569.882mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=886.811mil|Location2.X=943.898mil|Location1.Y=532.48mil|Location2.Y=569.882mil|Absolute=True">Un-Routed Net Constraint: Track (23mm,14mm)(23.5mm,14mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=985.236mil|Location2.X=1022.638mil|Location1.Y=414.37mil|Location2.Y=648.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=985.236mil|Location2.X=1022.638mil|Location1.Y=414.37mil|Location2.Y=648.622mil|Absolute=True">Un-Routed Net Constraint: Track (25.5mm,11mm)(25.5mm,16mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1024.606mil|Location2.X=1062.008mil|Location1.Y=375mil|Location2.Y=687.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1024.606mil|Location2.X=1062.008mil|Location1.Y=375mil|Location2.Y=687.992mil|Absolute=True">Un-Routed Net Constraint: Track (26.5mm,10mm)(26.5mm,17mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1063.976mil|Location2.X=1101.378mil|Location1.Y=335.63mil|Location2.Y=727.362mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1063.976mil|Location2.X=1101.378mil|Location1.Y=335.63mil|Location2.Y=727.362mil|Absolute=True">Un-Routed Net Constraint: Track (27.5mm,9mm)(27.5mm,18mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1103.346mil|Location2.X=1140.748mil|Location1.Y=296.26mil|Location2.Y=766.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1103.346mil|Location2.X=1140.748mil|Location1.Y=296.26mil|Location2.Y=766.732mil|Absolute=True">Un-Routed Net Constraint: Track (28.5mm,8mm)(28.5mm,19mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1142.716mil|Location2.X=1180.118mil|Location1.Y=256.89mil|Location2.Y=806.102mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1142.716mil|Location2.X=1180.118mil|Location1.Y=256.89mil|Location2.Y=806.102mil|Absolute=True">Un-Routed Net Constraint: Track (29.5mm,7mm)(29.5mm,20mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1182.086mil|Location2.X=1219.488mil|Location1.Y=217.52mil|Location2.Y=845.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1182.086mil|Location2.X=1219.488mil|Location1.Y=217.52mil|Location2.Y=845.472mil|Absolute=True">Un-Routed Net Constraint: Track (30.5mm,6mm)(30.5mm,21mm) on L4_COIL_Y Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDR0S1B2UB31ZSCMMVZR3B4W3QFIRO1F1JBS01GOOGHL4WQSSLIQ5G"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2619.532mil|Location2.X=2672.946mil|Location1.Y=3260.043mil|Location2.Y=3344.13mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2619.532mil|Location2.X=2672.946mil|Location1.Y=3260.043mil|Location2.Y=3344.13mil|Absolute=True">Net Antennae: Track (67.1mm,82.1mm)(67.1mm,83.369mm) on L3_COIL_X </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2619.532mil|Location2.X=2672.946mil|Location1.Y=3260.043mil|Location2.Y=3344.13mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2619.532mil|Location2.X=2672.946mil|Location1.Y=3260.043mil|Location2.Y=3344.13mil|Absolute=True">Net Antennae: Track (67.1mm,83.369mm)(67.1mm,84.6mm) on L3_COIL_X </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDGIPDIJKXYOB5GEOVH0R0XYZYSG1EB2UWA0SJ3FPG5E22LXNGFFLL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Length Constraint (Min=0mm) (Max=30.4mm) (InNetClass('SIGNAL'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1774.106mil|Location2.X=3069.442mil|Location1.Y=1971.347mil|Location2.Y=2852.415mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1774.106mil|Location2.X=3069.442mil|Location1.Y=1971.347mil|Location2.Y=2852.415mil|Absolute=True">Length Constraint: (90.823mm &gt; 30.4mm) Net CLK Actual Length = 90.823mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1624.685mil|Location2.X=3319.488mil|Location1.Y=1484.327mil|Location2.Y=1828.15mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1624.685mil|Location2.X=3319.488mil|Location1.Y=1484.327mil|Location2.Y=1828.15mil|Absolute=True">Length Constraint: (59.191mm &gt; 30.4mm) Net CS Actual Length = 59.191mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1287.476mil|Location2.X=2269.764mil|Location1.Y=2200.423mil|Location2.Y=2730.709mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1287.476mil|Location2.X=2269.764mil|Location1.Y=2200.423mil|Location2.Y=2730.709mil|Absolute=True">Length Constraint: (38.803mm &gt; 30.4mm) Net HOLD Actual Length = 38.803mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1261.885mil|Location2.X=2177.091mil|Location1.Y=1892.638mil|Location2.Y=2864.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1261.885mil|Location2.X=2177.091mil|Location1.Y=1892.638mil|Location2.Y=2864.593mil|Absolute=True">Length Constraint: (61.65mm &gt; 30.4mm) Net HOLD1 Actual Length = 61.65mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1931.976mil|Location2.X=3319.488mil|Location1.Y=1622.323mil|Location2.Y=2586.616mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1931.976mil|Location2.X=3319.488mil|Location1.Y=1622.323mil|Location2.Y=2586.616mil|Absolute=True">Length Constraint: (57.124mm &gt; 30.4mm) Net MISO Actual Length = 57.124mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1756.493mil|Location2.X=3319.488mil|Location1.Y=1537.992mil|Location2.Y=2373.941mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1756.493mil|Location2.X=3319.488mil|Location1.Y=1537.992mil|Location2.Y=2373.941mil|Absolute=True">Length Constraint: (61.741mm &gt; 30.4mm) Net MOSI Actual Length = 61.741mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1691.535mil|Location2.X=3219.488mil|Location1.Y=1537.992mil|Location2.Y=2373.941mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1691.535mil|Location2.X=3219.488mil|Location1.Y=1537.992mil|Location2.Y=2373.941mil|Absolute=True">Length Constraint: (62.865mm &gt; 30.4mm) Net SCL_PCB1 Actual Length = 62.865mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2066.136mil|Location2.X=3219.488mil|Location1.Y=1640.669mil|Location2.Y=1949.794mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2066.136mil|Location2.X=3219.488mil|Location1.Y=1640.669mil|Location2.Y=1949.794mil|Absolute=True">Length Constraint: (44.865mm &gt; 30.4mm) Net SCL_PCB3 Actual Length = 44.865mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1971.347mil|Location2.X=3319.488mil|Location1.Y=1437.992mil|Location2.Y=2598.875mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1971.347mil|Location2.X=3319.488mil|Location1.Y=1437.992mil|Location2.Y=2598.875mil|Absolute=True">Length Constraint: (59.63mm &gt; 30.4mm) Net SCLK Actual Length = 59.63mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1872.921mil|Location2.X=3219.488mil|Location1.Y=1437.992mil|Location2.Y=2478.405mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1872.921mil|Location2.X=3219.488mil|Location1.Y=1437.992mil|Location2.Y=2478.405mil|Absolute=True">Length Constraint: (57.775mm &gt; 30.4mm) Net SDA_PCB1 Actual Length = 57.775mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1644.929mil|Location2.X=3219.488mil|Location1.Y=1737.992mil|Location2.Y=2373.941mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1644.929mil|Location2.X=3219.488mil|Location1.Y=1737.992mil|Location2.Y=2373.941mil|Absolute=True">Length Constraint: (65.961mm &gt; 30.4mm) Net SDA_PCB3 Actual Length = 65.961mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1549.882mil|Location2.X=2100.176mil|Location1.Y=442.167mil|Location2.Y=2427.535mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1549.882mil|Location2.X=2100.176mil|Location1.Y=442.167mil|Location2.Y=2427.535mil|Absolute=True">Length Constraint: (66.666mm &gt; 30.4mm) Net SWCLK Actual Length = 66.666mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1596.983mil|Location2.X=2177.091mil|Location1.Y=458.268mil|Location2.Y=2249.532mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1596.983mil|Location2.X=2177.091mil|Location1.Y=458.268mil|Location2.Y=2249.532mil|Absolute=True">Length Constraint: (63.349mm &gt; 30.4mm) Net SWDIO Actual Length = 63.349mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1287.476mil|Location2.X=2066.929mil|Location1.Y=2002.559mil|Location2.Y=2680.709mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\P5_V8_Pimienta_Alarcon\PCB1_Manual.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1287.476mil|Location2.X=2066.929mil|Location1.Y=2002.559mil|Location2.Y=2680.709mil|Absolute=True">Length Constraint: (36.41mm &gt; 30.4mm) Net WP Actual Length = 36.41mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
